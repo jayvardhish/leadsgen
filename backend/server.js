@@ -9,9 +9,17 @@ app.use(express.json());
 app.use(cors());
 
 // ─── MongoDB Connection ────────────────────────────────────────────────────
-mongoose.connect(process.env.MONGO_URI, {})
-  .then(() => console.log('✅  MongoDB connected'))
-  .catch(err => console.error('❌  MongoDB error:', err.message));
+const connectDB = async () => {
+  try {
+    const connStr = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/smartlead';
+    await mongoose.connect(connStr);
+    console.log(`✅  MongoDB Connected to: ${connStr}`);
+  } catch (err) {
+    console.error(`❌  MongoDB Connection Failed: ${err.message}`);
+    console.log('💡 Tip: Make sure MongoDB is running locally or provide a valid MONGO_URI in .env');
+  }
+};
+connectDB();
 
 // ─── Schemas ──────────────────────────────────────────────────────────────
 const leadSchema = new mongoose.Schema({
