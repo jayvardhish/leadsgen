@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Build output
+dist/
+build/
+*.apk
+*.aab
+
+# Environment secrets — NEVER commit these
+.env
+backend/.env
+flutter_code/.flutter-plugins
+flutter_code/.flutter-plugins-dependencies
+
+# Flutter build artifacts
+flutter_code/build/
+flutter_code/.dart_tool/
+flutter_code/.packages
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+*.suo
+*.user

@@ -1,0 +1,61 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Internet access (API calls to backend) -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- For url_launcher: open WhatsApp, dialer, email -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <application
+        android:label="SmartLead AI"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Required by url_launcher to query WhatsApp -->
+        <queries>
+            <intent>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:scheme="https"/>
+            </intent>
+            <intent>
+                <action android:name="android.intent.action.DIAL"/>
+                <data android:scheme="tel"/>
+            </intent>
+            <intent>
+                <action android:name="android.intent.action.SENDTO"/>
+                <data android:scheme="mailto"/>
+            </intent>
+            <package android:name="com.whatsapp"/>
+            <package android:name="com.whatsapp.w4b"/>
+        </queries>
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"/>
+    </application>
+
+    <!-- Required to query activities if the app is compiled against Android 11 (R)+ -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+</manifest>

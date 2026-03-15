@@ -1,0 +1,17 @@
+# SmartLead AI – Render deployment config
+# Render auto-detects this file. No changes needed.
+services:
+  - type: web
+    name: smartlead-api
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false        # You fill this in Render dashboard
+      - key: OPENAI_API_KEY
+        sync: false        # You fill this in Render dashboard
